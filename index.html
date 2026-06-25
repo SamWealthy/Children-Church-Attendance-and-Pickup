@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JHT Children Church Attendance and Pickup</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">JHT Children Church</p>
+        <h1>Attendance and Pickup</h1>
+      </div>
+      <div class="header-actions">
+        <label class="date-control">
+          Service date
+          <input id="serviceDateInput" type="date" />
+        </label>
+        <button class="icon-button" id="todayBtn" title="Jump to today">Today</button>
+        <button class="icon-button" id="exportBtn" title="Export selected date attendance">Export</button>
+        <button class="icon-button" id="reportBtn" title="Generate selected date service report">Report</button>
+        <button class="primary-button" id="addChildBtn">Add Child</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="summary-grid" aria-label="Attendance summary">
+        <article>
+          <span id="checkedInCount">0</span>
+          <p>Checked in</p>
+        </article>
+        <article>
+          <span id="collectedCount">0</span>
+          <p>Collected</p>
+        </article>
+        <article>
+          <span id="waitingCount">0</span>
+          <p>Awaiting pickup</p>
+        </article>
+        <article>
+          <span id="totalCount">0</span>
+          <p>Children registered</p>
+        </article>
+      </section>
+
+      <section class="workbench">
+        <aside class="left-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Check in</p>
+              <h2>Find a child</h2>
+            </div>
+            <div class="quick-actions">
+              <button class="ghost-button" id="seedBtn">Load demo</button>
+              <button class="ghost-button" id="historyDemoBtn">Demo history</button>
+            </div>
+          </div>
+
+          <label class="search-box">
+            <span>Search name, class, guardian, code</span>
+            <input id="searchInput" type="search" placeholder="Start typing..." autocomplete="off" />
+          </label>
+
+          <div class="filters" id="classFilters" aria-label="Class filters"></div>
+          <div class="import-box">
+            <p class="eyebrow">Student loader</p>
+            <div class="quick-actions">
+              <button class="ghost-button" id="downloadTemplateBtn" type="button">Template</button>
+              <button class="ghost-button" id="importStudentsBtn" type="button">Import CSV</button>
+              <button class="ghost-button" id="exportStudentsBtn" type="button">Export students</button>
+            </div>
+            <p id="importStatus" class="helper-text">Use an Excel CSV with columns: name, class, guardian, phone, collectors, notes.</p>
+            <input id="studentFileInput" type="file" accept=".csv,.txt,text/csv" hidden />
+          </div>
+          <div class="child-list" id="childList" aria-live="polite"></div>
+        </aside>
+
+        <section class="detail-panel" id="detailPanel">
+          <div class="empty-state">
+            <h2>Select a child</h2>
+            <p>Search or choose from the list to check in, generate a pickup code, or mark collection.</p>
+          </div>
+        </section>
+      </section>
+
+      <section class="class-board">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Live classes</p>
+            <h2>Who is present now</h2>
+          </div>
+          <button class="ghost-button" id="resetDayBtn">Reset date</button>
+        </div>
+        <div id="classBoard" class="class-grid"></div>
+      </section>
+
+      <section class="history-board">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Records & analysis</p>
+            <h2>Attendance history</h2>
+          </div>
+        </div>
+        <div id="analysisBoard" class="analysis-grid"></div>
+        <div id="historyTable" class="history-table"></div>
+      </section>
+    </main>
+
+    <dialog id="childDialog">
+      <form method="dialog" id="childForm">
+        <div class="dialog-heading">
+          <h2 id="dialogTitle">Add child</h2>
+          <button class="round-button" id="closeDialogBtn" type="button" aria-label="Close">×</button>
+        </div>
+        <div class="form-grid">
+          <label>
+            Child name
+            <input name="name" required />
+          </label>
+          <label>
+            Class
+            <input name="className" required placeholder="e.g. Toddlers" />
+          </label>
+          <label>
+            Guardian
+            <input name="guardian" required />
+          </label>
+          <label>
+            Phone
+            <input name="phone" inputmode="tel" />
+          </label>
+          <label class="full">
+            Authorized collectors
+            <input name="collectors" placeholder="Comma separated names" />
+          </label>
+          <label class="full">
+            Notes
+            <textarea name="notes" rows="3" placeholder="Allergies, medical notes, special instructions"></textarea>
+          </label>
+        </div>
+        <menu>
+          <button class="ghost-button" id="cancelDialogBtn" type="button">Cancel</button>
+          <button class="primary-button" id="saveChildBtn" value="default" type="submit">Save child</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <dialog id="pickupDialog" class="pickup-dialog">
+      <div class="photo-card" id="pickupPhotoCard"></div>
+      <menu>
+        <button class="ghost-button" id="closePickupBtn" type="button">Close</button>
+        <button class="primary-button" id="printPickupBtn" type="button">Print</button>
+      </menu>
+    </dialog>
+
+    <template id="childRowTemplate">
+      <button class="child-row" type="button">
+        <span class="avatar"></span>
+        <span class="row-main">
+          <strong></strong>
+          <small></small>
+        </span>
+        <span class="status-pill"></span>
+      </button>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
