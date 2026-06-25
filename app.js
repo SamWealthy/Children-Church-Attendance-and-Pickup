@@ -1,4 +1,5 @@
 const STORAGE_KEY = "childrenChurchAttendance.v1";
+const THEME_KEY = "childrenChurchAttendance.theme";
 
 const state = {
   children: [],
@@ -27,6 +28,7 @@ const els = {
   addChildBtn: document.querySelector("#addChildBtn"),
   exportBtn: document.querySelector("#exportBtn"),
   reportBtn: document.querySelector("#reportBtn"),
+  themeToggleBtn: document.querySelector("#themeToggleBtn"),
   seedBtn: document.querySelector("#seedBtn"),
   historyDemoBtn: document.querySelector("#historyDemoBtn"),
   downloadTemplateBtn: document.querySelector("#downloadTemplateBtn"),
@@ -77,6 +79,24 @@ function todayKey() {
 
 function selectedDateKey() {
   return state.selectedDate || todayKey();
+}
+
+function applyTheme(theme) {
+  const isDark = theme === "dark";
+  document.body.classList.toggle("dark-mode", isDark);
+  els.themeToggleBtn.textContent = isDark ? "Light" : "Dark";
+  els.themeToggleBtn.title = isDark ? "Switch to light mode" : "Switch to dark mode";
+}
+
+function loadTheme() {
+  const savedTheme = localStorage.getItem(THEME_KEY) || "light";
+  applyTheme(savedTheme);
+}
+
+function toggleTheme() {
+  const nextTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
+  localStorage.setItem(THEME_KEY, nextTheme);
+  applyTheme(nextTheme);
 }
 
 function save() {
@@ -894,6 +914,7 @@ els.printPickupBtn.addEventListener("click", () => {
 });
 els.exportBtn.addEventListener("click", exportAttendance);
 els.reportBtn.addEventListener("click", generateServiceReport);
+els.themeToggleBtn.addEventListener("click", toggleTheme);
 els.seedBtn.addEventListener("click", () => {
   if (!confirm("Replace current children with 100 demo children?")) return;
   seedDemoChildren();
@@ -912,5 +933,6 @@ els.historyDemoBtn.addEventListener("click", () => {
 });
 els.resetDayBtn.addEventListener("click", resetDay);
 
+loadTheme();
 load();
 render();

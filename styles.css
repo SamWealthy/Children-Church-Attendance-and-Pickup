@@ -12,6 +12,34 @@
   --red: #b42318;
   --teal: #0f766e;
   --shadow: 0 18px 50px rgba(30, 42, 70, 0.12);
+  --header: #17324d;
+  --soft: #f8fafc;
+  --button-soft: #eef2f7;
+  --button-text: #27344a;
+  --row-hover: rgba(33, 102, 243, 0.1);
+  --card-note: #e7f0ff;
+}
+
+body.dark-mode {
+  color-scheme: dark;
+  --ink: #edf2ff;
+  --muted: #a8b3c7;
+  --line: #344157;
+  --panel: #182234;
+  --paper: #0e1522;
+  --accent: #6ea2ff;
+  --accent-dark: #9cc0ff;
+  --green: #66d29b;
+  --amber: #f2b35d;
+  --red: #ff8f82;
+  --teal: #72d4ca;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+  --header: #111b2c;
+  --soft: #202c42;
+  --button-soft: #26344c;
+  --button-text: #e8efff;
+  --row-hover: rgba(110, 162, 255, 0.18);
+  --card-note: #1d3558;
 }
 
 * {
@@ -37,7 +65,7 @@ button {
 
 .app-header {
   align-items: center;
-  background: #17324d;
+  background: var(--header);
   color: white;
   display: flex;
   justify-content: space-between;
@@ -163,7 +191,7 @@ main {
 }
 
 .import-box {
-  background: #f8fafc;
+  background: var(--soft);
   border: 1px solid var(--line);
   border-radius: 8px;
   display: grid;
@@ -228,8 +256,8 @@ textarea:focus {
 
 .ghost-button,
 .icon-button {
-  background: #eef2f7;
-  color: #27344a;
+  background: var(--button-soft);
+  color: var(--button-text);
 }
 
 .danger-button {
@@ -238,10 +266,10 @@ textarea:focus {
 }
 
 .filter-chip {
-  background: #f2f4f8;
+  background: var(--button-soft);
   border: 1px solid transparent;
   border-radius: 999px;
-  color: #27344a;
+  color: var(--button-text);
   min-height: 34px;
   padding: 0 12px;
 }
@@ -264,7 +292,7 @@ textarea:focus {
 
 .child-row {
   align-items: center;
-  background: #fff;
+  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 8px;
   color: var(--ink);
@@ -278,7 +306,7 @@ textarea:focus {
 .child-row:hover,
 .child-row.selected {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(33, 102, 243, 0.1);
+  box-shadow: 0 0 0 3px var(--row-hover);
 }
 
 .avatar,
@@ -329,8 +357,8 @@ textarea:focus {
 }
 
 .status-away {
-  background: #eef2f7;
-  color: #526071;
+  background: var(--button-soft);
+  color: var(--muted);
 }
 
 .status-in {
@@ -381,7 +409,7 @@ textarea:focus {
 }
 
 .meta-card {
-  background: #f8fafc;
+  background: var(--soft);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 13px;
@@ -415,7 +443,7 @@ textarea:focus {
 }
 
 .photo-card {
-  background: #ffffff;
+  background: var(--panel);
   border: 2px solid #17324d;
   border-radius: 8px;
   color: #17324d;
@@ -459,7 +487,7 @@ textarea:focus {
 }
 
 .photo-card .photo-note {
-  background: #e7f0ff;
+  background: var(--card-note);
   border-radius: 8px;
   color: #164ebc;
   font-weight: 800;
@@ -507,7 +535,7 @@ textarea:focus {
 
 .class-card li {
   align-items: center;
-  border-bottom: 1px solid #eef1f5;
+  border-bottom: 1px solid var(--line);
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -522,7 +550,7 @@ textarea:focus {
 }
 
 .analysis-card {
-  background: #f8fafc;
+  background: var(--soft);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 14px;
@@ -557,13 +585,13 @@ textarea:focus {
 
 .history-table th,
 .history-table td {
-  border-bottom: 1px solid #eef1f5;
+  border-bottom: 1px solid var(--line);
   padding: 11px 12px;
   text-align: left;
 }
 
 .history-table th {
-  background: #f8fafc;
+  background: var(--soft);
   color: var(--muted);
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -603,7 +631,7 @@ textarea:focus {
 
 .mini-history li {
   align-items: center;
-  background: #f8fafc;
+  background: var(--soft);
   border: 1px solid var(--line);
   border-radius: 8px;
   display: flex;
@@ -632,7 +660,7 @@ dialog::backdrop {
 }
 
 .round-button {
-  background: #eef2f7;
+  background: var(--button-soft);
   border: 0;
   border-radius: 50%;
   color: var(--ink);
