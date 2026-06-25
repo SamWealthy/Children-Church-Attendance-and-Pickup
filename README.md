@@ -22,6 +22,7 @@ Double-click `index.html` in this folder. No server or internet connection is re
 - Exports the selected date's attendance as a CSV file.
 - Generates a selected-date service report with summary, class totals, attendance details, absentees, and care notes.
 - Includes a saved light/dark mode toggle.
+- Uses a responsive layout for phones, tablets, and laptops.
 - Lets you add or edit children.
 - Imports students from an Excel-compatible CSV register.
 - Exports the student list as a CSV register.
